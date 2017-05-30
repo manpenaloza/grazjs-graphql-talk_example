@@ -31,6 +31,10 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLString }}, // "Give me the id of the user you're looking for as an argument" ...^
       resolve(parentValue, args) { // >> so finally let's go to the database/api and get the data we are looking for
         return _.find(users, { id: args.id });
+        // THIS IS BOOOOOOOOOORING!
+        // Let's fetch dynamic "realworld" data
+        // From a db directly, from an api? 
+        // Well. GraphQL doesn't give a shit!
       }
     }
   }
