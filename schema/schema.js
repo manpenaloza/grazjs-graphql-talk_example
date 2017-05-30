@@ -6,6 +6,11 @@ const {
   GraphQLInt,
 } = graphql;
 
+const users = [
+  { id: "abc1", firstName: "Bob", age: 20},
+  { id: "def2", firstName: "John", age: 35},
+];
+
 const UserType = new GraphQLObjectType({
   name: 'User', // REQUIRED - name prop is a string naming the type
   fields: { // REQUIRED - most important prop, telling graphql all the fields a node has
@@ -23,7 +28,7 @@ const RootQuery = new GraphQLObjectType({
       type: UserType, // ... "and I'll return you the user you're looking for"
       args: { id: { type: GraphQLString }}, // "Give me the id of the user you're looking for as an argument" ...^
       resolve(parentValue, args) { // >> so finally let's go to the database/api and get the data we are looking for
-
+        
       }
     }
   }
