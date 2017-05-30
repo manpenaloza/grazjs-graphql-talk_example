@@ -1,11 +1,16 @@
 {
   "users": [
-    { "id": "1", "firstName": "Bill", "age": 30 },
-    { "id": "2", "firstName": "John", "age": 90 },
-    { "id": "3", "firstName": "Willy", "age": 70 },
-    { "id": "4", "firstName": "Andy", "age": 60 },
-    { "id": "5", "firstName": "Gregory", "age": 30 },
-    { "id": "6", "firstName": "Max", "age": 40 },
-    { "id": "7", "firstName": "Pat", "age": 20 }
+    { "id": "1", "firstName": "Bill", "age": 30, "companyId": "1" },
+    { "id": "2", "firstName": "John", "age": 90, "companyId": "2" },
+    { "id": "3", "firstName": "Willy", "age": 70, "companyId": "1" },
+    { "id": "4", "firstName": "Andy", "age": 60, "companyId": "1" },
+    { "id": "5", "firstName": "Gregory", "age": 30, "companyId": "1" },
+    { "id": "6", "firstName": "Manuel", "age": 40, "companyId": "2" },
+    { "id": "7", "firstName": "Manuel", "age": 20, "companyId": "3" }
+  ],
+  "companies": [
+    { "id": "1", "name": "Netconomy", "description": "Best meetup sponsor on earth" },
+    { "id": "2", "name": "Blue Tomato", "description": "Best online shop on earth" },
+    { "id": "3", "name": "Timeular", "description": "Best time tracking on earth" }
   ]
 }
