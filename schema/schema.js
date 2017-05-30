@@ -14,3 +14,17 @@ const UserType = new GraphQLObjectType({
     age: { type: GraphQLInt },
   },
 });
+
+// ROOTQUERY to enable GraphQL jump into our data landscape and build up the graph
+const RootQuery = new GraphQLObjectType({
+  name: 'RootQueryType',
+  fields: {
+    user: {
+      type: UserType, // ... "and I'll return you the user you're looking for"
+      args: { id: { type: GraphQLString }}, // "Give me the id of the user you're looking for as an argument" ...^
+      resolve(parentValue, args) { // >> so finally let's go to the database/api and get the data we are looking for
+
+      }
+    }
+  }
+});
