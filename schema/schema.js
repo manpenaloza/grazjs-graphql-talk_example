@@ -1,9 +1,11 @@
 const graphql = require('graphql');
+const _ = require('lodash');
 
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
+  GraphQLSchema, // takes in a root query and returns a GraphQL schema
 } = graphql;
 
 const users = [
@@ -28,8 +30,12 @@ const RootQuery = new GraphQLObjectType({
       type: UserType, // ... "and I'll return you the user you're looking for"
       args: { id: { type: GraphQLString }}, // "Give me the id of the user you're looking for as an argument" ...^
       resolve(parentValue, args) { // >> so finally let's go to the database/api and get the data we are looking for
-        
+        return _.find(users, { id: args.id });
       }
     }
   }
+});
+
+module.exports = new GraphQLSchema({
+  query: RootQuery,
 });
