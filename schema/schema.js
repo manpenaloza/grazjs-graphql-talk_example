@@ -14,12 +14,30 @@ const {
 //   { id: "def2", firstName: "John", age: 35},
 // ];
 
+const CompanyType = new GraphQLObjectType({
+  name: 'Company',
+  fields: {
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+  }
+});
+
 const UserType = new GraphQLObjectType({
   name: 'User', // REQUIRED - name prop is a string naming the type
   fields: { // REQUIRED - most important prop, telling graphql all the fields a node has
     id: { type: GraphQLString },
     firstName: { type: GraphQLString },
     age: { type: GraphQLInt },
+    company: {
+      type: CompanyType,
+      resolve(parentValue, args) {
+        // now note: parentValue arg to the rescue to reslove this :D!
+        // parentValue: "pure" returend db object including the companyId!
+        return axios.get(`http://localhost:3000/companies/${parentValue.companyId}`)
+              .then(response => response.data);
+      },
+    },
   },
 });
 
