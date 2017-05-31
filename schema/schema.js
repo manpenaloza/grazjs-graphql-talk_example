@@ -17,7 +17,7 @@ const {
 
 const CompanyType = new GraphQLObjectType({
   name: 'Company',
-  fields: {
+  fields: () => ({
     id: { type: GraphQLString },
     name: { type: GraphQLString },
     description: { type: GraphQLString },
@@ -29,12 +29,12 @@ const CompanyType = new GraphQLObjectType({
                     .then(response => response.data);
       }
     },
-  }
+  })
 });
 
 const UserType = new GraphQLObjectType({
   name: 'User', // REQUIRED - name prop is a string naming the type
-  fields: { // REQUIRED - most important prop, telling graphql all the fields a node has
+  fields: () => ({ // REQUIRED - most important prop, telling graphql all the fields a node has
     id: { type: GraphQLString },
     firstName: { type: GraphQLString },
     age: { type: GraphQLInt },
@@ -47,7 +47,7 @@ const UserType = new GraphQLObjectType({
               .then(response => response.data);
       },
     },
-  },
+  }),
 });
 
 // ROOTQUERY to enable GraphQL jump into our data landscape and build up the graph
