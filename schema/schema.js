@@ -7,6 +7,7 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLSchema, // takes in a root query and returns a GraphQL schema
+  GraphQLList,
 } = graphql;
 
 // const users = [
@@ -20,6 +21,14 @@ const CompanyType = new GraphQLObjectType({
     id: { type: GraphQLString },
     name: { type: GraphQLString },
     description: { type: GraphQLString },
+    users: {
+      type: new GraphQLList(UserType),
+      resolve(parentValue, args) {
+        // json-server helps us out to find users of each company without having them saved explicitly in our db
+        return axios.get(`http://localhost:3000/companies/${parentValue.id}/users`)
+                    .then(response => response.data);
+      }
+    },
   }
 });
 
